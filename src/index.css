@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+:root {
+  --bg-base: #F6F5F0;
+  --surface-primary: #FFFFFF;
+  --surface-secondary: #EEEEE8;
+  --surface-tertiary: #E5E5DD;
+  --border-subtle: #DEDED5;
+  --border-strong: #C4C4BA;
+  --text-primary: #191A18;
+  --text-secondary: #73746D;
+  --text-muted: #9E9F97;
+  --accent: #F0442D;
+  --accent-hover: #D73823;
+  --accent-light: rgba(240, 68, 45, 0.12);
+  --explored-bg: #8FA6B2;
+  --explored-border: #778F9B;
+  --frontier-bg: #BAE6FD;
+  --frontier-border: #7DD3FC;
+  --path-bg: #F0442D;
+  --path-border: #C82D19;
+  --wall-bg: #191A18;
+  --wall-border: #111210;
+  --start-bg: #2563EB;
+  --dest-bg: #15803D;
+  --weight-bg: #D4C9A8;
+}
+
+.dark {
+  --bg-base: #121312;
+  --surface-primary: #1A1C1A;
+  --surface-secondary: #232623;
+  --surface-tertiary: #2D302D;
+  --border-subtle: #2E322E;
+  --border-strong: #404440;
+  --text-primary: #EDEDE8;
+  --text-secondary: #9A9C94;
+  --text-muted: #6B6D66;
+  --accent: #F0442D;
+  --accent-hover: #FA5843;
+  --accent-light: rgba(240, 68, 45, 0.2);
+  --explored-bg: #334958;
+  --explored-border: #425B6C;
+  --frontier-bg: #1E3A5F;
+  --frontier-border: #2D588E;
+  --path-bg: #F0442D;
+  --path-border: #FF6650;
+  --wall-bg: #0D0E0D;
+  --wall-border: #222522;
+  --start-bg: #3B82F6;
+  --dest-bg: #22C55E;
+  --weight-bg: #3D3728;
+}
+
+body {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.font-mono-tech {
+  font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+}
+
+.font-serif-editorial {
+  font-family: 'Instrument Serif', Georgia, serif;
+}
+
+/* Custom scrollbar for technical instrument feel */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--surface-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Diagonal hatch pattern for weighted terrain */
+.weighted-hatch {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(146, 114, 46, 0.2),
+    rgba(146, 114, 46, 0.2) 2px,
+    transparent 2px,
+    transparent 6px
+  );
+}
+
+.dark .weighted-hatch {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(217, 180, 107, 0.25),
+    rgba(217, 180, 107, 0.25) 2px,
+    transparent 2px,
+    transparent 6px
+  );
+}
+
+/* Cell animations */
+@keyframes popIn {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pathGlow {
+  0% {
+    transform: scale(0.5);
+    background-color: #FED7AA;
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+    background-color: var(--path-bg);
+  }
+}
+
+.animate-pop-in {
+  animation: popIn 0.22s ease-out forwards;
+}
+
+.animate-path-flow {
+  animation: pathGlow 0.28s ease-out forwards;
+}
