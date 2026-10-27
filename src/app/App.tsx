@@ -32,9 +32,20 @@ export const App: React.FC = () => {
   const clearWalls = useAppStore((s) => s.clearWalls);
   const clearPath = useAppStore((s) => s.clearPath);
   const generateMaze = useAppStore((s) => s.generateMaze);
+  const theme = useAppStore((s) => s.theme);
   const toggleTheme = useAppStore((s) => s.toggleTheme);
   const shortcutsModalOpen = useAppStore((s) => s.shortcutsModalOpen);
   const setShortcutsModalOpen = useAppStore((s) => s.setShortcutsModalOpen);
+
+  // Sync theme with HTML document root
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'dark') {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+  }, [theme]);
 
   // Global keyboard shortcuts
   useEffect(() => {
